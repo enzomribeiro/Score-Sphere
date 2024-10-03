@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 03/10/2024 às 01:14
+-- Tempo de geração: 03/10/2024 às 12:04
 -- Versão do servidor: 8.3.0
 -- Versão do PHP: 8.2.18
 
@@ -33,15 +33,17 @@ CREATE TABLE IF NOT EXISTS `jogadores` (
   `nome` varchar(100) DEFAULT NULL,
   `sexo` enum('Masculino','Feminino') DEFAULT NULL,
   `escola` varchar(100) DEFAULT NULL,
+  `pontuacao` int DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `jogadores`
 --
 
-INSERT INTO `jogadores` (`id`, `nome`, `sexo`, `escola`) VALUES
-(1, 'Enzo Ribeiro', '', 'Unigrau');
+INSERT INTO `jogadores` (`id`, `nome`, `sexo`, `escola`, `pontuacao`) VALUES
+(1, 'Enzo Ribeiro', '', 'Unigrau', 5),
+(2, 'luis', '', 'Cândido', 5);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
