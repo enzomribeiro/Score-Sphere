@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS `jogadores`;
 CREATE TABLE IF NOT EXISTS `jogadores` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) DEFAULT NULL,
-  `sexo` enum('Masculino','Feminino') DEFAULT NULL,
+  `sexo` varchar(1) DEFAULT NULL,
   `escola` varchar(100) DEFAULT NULL,
   `pontuacao` int DEFAULT '0',
   PRIMARY KEY (`id`)
