@@ -45,49 +45,15 @@ async function connectToSerial() {
 // Evento ao clicar no botão de conectar
 connectButton.addEventListener('click', connectToSerial);
 
-// Função para popular o select de jogadores a partir do localStorage
-function popularSelectJogadores() {
-    const jogadores = JSON.parse(localStorage.getItem('jogadores')) || [];
-    const select = document.getElementById('jogadores');
+document.getElementById('jogadores').addEventListener('change', function() {
+    var selectedPlayer = this.value;
+    var jogadorSelecionado = document.getElementById('jogadorSelecionado');
 
-    jogadores.forEach(jogador => {
-        const option = document.createElement('option');
-        option.value = jogador.nome;
-        option.text = jogador.nome;
-        select.appendChild(option);
-    });
-}
-
-// Função para exibir o nome do jogador selecionado
-function exibirNomeJogador() {
-    const select = document.getElementById('jogadores');
-    const jogadorSelecionado = document.getElementById('jogadorSelecionado');
-
-    select.addEventListener('change', function() {
-        if (select.value) {
-            jogadorSelecionado.textContent = select.value;
-        } else {
-            jogadorSelecionado.textContent = 'Selecione um Jogador';
-        }
-    });
-}
-
-// Função para inicializar o contador (já existente)
-function inicializarContador() {
-    let counter = 0;
-    const counterDiv = document.getElementById('counter');
-    const connectButton = document.getElementById('connectButton');
-
-    connectButton.addEventListener('click', () => {
-        // Simulação de incremento no contador ao conectar
-        counter++;
-        counterDiv.textContent = counter;
-    });
-}
-
-// Inicializa o select de jogadores, exibição do nome e o contador
-document.addEventListener('DOMContentLoaded', function() {
-    popularSelectJogadores();
-    exibirNomeJogador();
-    inicializarContador();
+    // Atualiza o conteúdo do h1 com o nome do jogador selecionado
+    if (selectedPlayer) {
+        jogadorSelecionado.textContent = selectedPlayer; // Atualiza o texto do cabeçalho
+    } else {
+        jogadorSelecionado.textContent = "Selecione um Jogador"; // Reseta o texto se nada for selecionado
+    }
 });
+
