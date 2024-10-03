@@ -74,6 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ?>
     </ul>
 
-    <h2><a href="index.html">Inicial</a></h2>
+    <h2><a href="index.php">Inicial</a></h2>
 </body>
 </html>

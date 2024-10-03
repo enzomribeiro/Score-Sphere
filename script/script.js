@@ -1,6 +1,8 @@
 let serialPort;
 let reader;
-let detectionCount = 0;
+let detectionCount = 0; // Contador de detecções
+let currentPlayer = null; // Armazena o jogador atual
+let isReading = false; // Controle para leitura do Arduino
 
 const counterDisplay = document.getElementById('counter');
 const connectButton = document.getElementById('connectButton');
@@ -14,12 +16,12 @@ async function connectToSerial() {
 
         // Leitor da porta serial
         reader = serialPort.readable.getReader();
+        isReading = true; // Atualiza o controle de leitura
 
         // Leitura contínua da porta serial
-        while (true) {
+        while (isReading) {
             const { value, done } = await reader.read();
             if (done) {
-                // Se a leitura terminar, fecha o leitor
                 reader.releaseLock();
                 break;
             }
@@ -45,15 +47,49 @@ async function connectToSerial() {
 // Evento ao clicar no botão de conectar
 connectButton.addEventListener('click', connectToSerial);
 
-document.getElementById('jogadores').addEventListener('change', function() {
-    var selectedPlayer = this.value;
-    var jogadorSelecionado = document.getElementById('jogadorSelecionado');
+document.getElementById('jogadores').addEventListener('change', async function() {
+    const selectedPlayer = this.value;
+    const jogadorSelecionado = document.getElementById('jogadorSelecionado');
 
-    // Atualiza o conteúdo do h1 com o nome do jogador selecionado
+    // Salva a pontuação do jogador anterior antes de mudar
+    if (currentPlayer) {
+        await saveScore(currentPlayer, detectionCount);
+
+        // Envia o comando de reset para o Arduino
+        if (serialPort && isReading) {
+            const writer = serialPort.writable.getWriter();
+            await writer.write(new TextEncoder().encode("RESET\n")); // Envia o comando de reset
+            writer.releaseLock();
+        }
+    }
+
+    // Atualiza o jogador atual e o cabeçalho
     if (selectedPlayer) {
-        jogadorSelecionado.textContent = selectedPlayer; // Atualiza o texto do cabeçalho
+        currentPlayer = selectedPlayer;
+        jogadorSelecionado.textContent = currentPlayer; // Atualiza o texto do cabeçalho
+
+        // Reinicia a contagem visualmente
+        detectionCount = 0; // Reinicia a contagem para o novo jogador
+        counterDisplay.textContent = detectionCount; // Atualiza o placar na página
     } else {
         jogadorSelecionado.textContent = "Selecione um Jogador"; // Reseta o texto se nada for selecionado
     }
 });
 
+// Função para salvar a pontuação do jogador
+async function saveScore(playerName, score) {
+    try {
+        const response = await fetch('atualiza_pont.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `nome=${encodeURIComponent(playerName)}&pontuacao=${encodeURIComponent(score)}`
+        });
+
+        const data = await response.text();
+        console.log('Resposta do servidor:', data);
+    } catch (error) {
+        console.error('Erro ao enviar dados:', error);
+    }
+}
