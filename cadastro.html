@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Jogador</title>
+</head>
+<body>
+    <h1>Cadastro de Jogador</h1>
+    <form id="formCadastro" method="POST" action="./PHP/cadastro.php">
+        <div class="form-control">
+            <label for="nome">Nome do Jogador:</label>
+            <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div class="form-control">
+            <label>Sexo:</label>
+            <input type="radio" id="masculino" name="sexo" value="M" required>
+            <label for="masculino">Masculino</label>
+            <input type="radio" id="feminino" name="sexo" value="F" required>
+            <label for="feminino">Feminino</label>
+        </div>
+
+        <div class="form-control">
+            <label for="escola">Selecione a Escola:</label>
+            <select id="escola" name="escola" required>
+                <option value="">Selecione</option>
+                <option value="Cândido">E.E. "Dr. Cândido Rodrigues"</option>
+                <option value="Unigrau">Unigrau</option>
+                <option value="João Gabriel">E.E "João Gabriel Ribeiro"</option>
+                <option value="Santa Inês">Colégio Santa Inês</option>
+                <option value="Euclides">E.E "Euclides da Cunha"</option>
+            </select>
+        </div>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <h2>Jogadores Cadastrados:</h2>
+    <ul id="listaJogadores">
+    </ul>
+
+    <h2><a href="index.php">Inicial</a></h2>
+    <script src="/PHP/cadastro.php"></script>
+</body>
+</html>
