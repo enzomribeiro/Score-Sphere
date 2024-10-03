@@ -1,5 +1,5 @@
 <?php
-include('db.php');  // Inclui a conexão com o banco de dados
+include('./PHP/db.php');  // Inclui a conexão com o banco de dados
 
 // Verifica se o formulário foi enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

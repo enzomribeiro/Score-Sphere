@@ -1,5 +1,5 @@
 <?php
-    include('db.php');  // Inclui a conexão com o banco de dados
+    include('./PHP/db.php');  // Inclui a conexão com o banco de dados
 
     // Inicializa as variáveis
     $filtro = "";
