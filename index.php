@@ -43,9 +43,9 @@ if ($result->num_rows > 0) {
     <div id="counter">0</div>
     <button id="connectButton">Conectar ao Arduino</button>
 
-    <script src="script/script.js"></script>
     <h2><a href="cadastro.php">Jogadores</a></h2>
     <h2><a href="filtrar.php">Pontuação</a></h2>
+    <script src="script/script.js"></script>
 
 </body>
 </html>
