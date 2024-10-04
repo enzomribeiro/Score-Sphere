@@ -26,9 +26,7 @@ SET time_zone = "+00:00";
 --
 -- Estrutura para tabela `jogadores`
 --
-DROP DATABASE IF EXISTS `jogadores_db`;
-CREATE DATABASE `jogadores_db`;
-USE `jogadores_db`;
+
 DROP TABLE IF EXISTS `jogadores`;
 CREATE TABLE IF NOT EXISTS `jogadores` (
   `id` int NOT NULL AUTO_INCREMENT,

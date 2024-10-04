@@ -1,3 +1,33 @@
+<?php
+include('db.php');  // Inclui a conexão com o banco de dados
+
+// Inicializa as variáveis
+$filtro = "";
+$valores = [];
+
+// Verifica se o filtro foi enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $filtro = $_POST['filtro'];
+
+    // Define a consulta SQL com base no filtro
+    if ($filtro === 'nome') {
+        $sql = "SELECT DISTINCT nome FROM jogadores";
+    } elseif ($filtro === 'sexo') {
+        $sql = "SELECT DISTINCT sexo FROM jogadores";
+    } elseif ($filtro === 'escola') {
+        $sql = "SELECT DISTINCT escola FROM jogadores";
+    }
+
+    // Executa a consulta
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $valores[] = $row;  // Adiciona os resultados ao array de valores
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,7 +38,7 @@
 </head>
 <body>
 
-    <form method="POST" action="./PHP/pontuacao.php">
+    <form method="POST" action="pontuacao.php">
         <label>Filtro:</label>
         <input type="radio" id="nome" name="filtro" value="nome" required>
         <label for="nome">Nome</label>
@@ -42,6 +72,6 @@
     </div>
 
     <h2><a href="index.php">Inicial</a></h2>
-    <script src="/PHP/filtrar.php"></script>
+
 </body>
 </html>
