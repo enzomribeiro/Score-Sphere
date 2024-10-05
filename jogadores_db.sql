@@ -1,6 +1,4 @@
--- Comentando o SELECT, pode ser útil para debug
--- SELECT 'Banco de dados já existe vamos partir de onde começamos' FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'jogadores_db';
-SELECT 'Banco de dados já existe' FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'jogadores_db';
+--Retirei a primeira linha pois estava interferindo na importação para o phpmyadmin
 
 CREATE DATABASE IF NOT EXISTS `jogadores_db` DEFAULT CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_general_ci';
 USE `jogadores_db`;
