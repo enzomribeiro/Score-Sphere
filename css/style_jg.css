@@ -44,5 +44,12 @@ h1 {
 }
 
 .lista{
+    margin: 15px;
+    margin-left: 350px;
+    margin-right: 350px;
     font-size: 25px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 35px;
 }
