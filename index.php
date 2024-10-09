@@ -19,13 +19,12 @@ if ($result->num_rows > 0) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador de Detecções</title>
-
     <style>
     <?php include 'css/style.css'; ?>
     </style>
-
 </head>
 <body>
+    
 <header>
         <nav>
             <ul>
@@ -49,7 +48,9 @@ if ($result->num_rows > 0) {
 
     <h1 id="jogadorSelecionado">Selecione um Jogador</h1>
     <div id="counter">0</div>
+
     <script src="script/script.js"></script>
+    <script src="script/index.js"></script>
 
 </body>
 </html>
