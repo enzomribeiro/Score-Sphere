@@ -60,11 +60,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="escola">Selecione a Escola:</label>
             <select id="escola" name="escola" required>
                 <option value="">Selecione</option>
-                <option value="Cândido">E.E. "Dr. Cândido Rodrigues"</option>
-                <option value="Unigrau">Unigrau</option>
-                <option value="João Gabriel">E.E "João Gabriel Ribeiro"</option>
+                <option value="Cândido">E.E. Doutor Cândido Rodrigues</option>
+                <option value="Unigrau">Colegio Unigrau</option>
+                <option value="João Gabriel">E.E. Doutor João Gabriel Ribeiro</option>
                 <option value="Santa Inês">Colégio Santa Inês</option>
-                <option value="Euclides">E.E "Euclides da Cunha"</option>
+                <option value="Coc">Escola De Grau Em Grau Coc</option>
+                <option value="Euclides">E.E. Euclides da Cunha</option>
+                <option value="Lumen">Colegio Lumen</option>
+                <option value="Stella Maris">EMEB Professora Stella Maris Barbosa Catalano</option>
+                <option value="Fundação">Fundação Educacional </option>
+                <option value="Laudelina">E.E. Professora Laudelina de Oliveira Pourrat</option>
+                <option value="Sylvia Portugal">E.E. Professora Sylvia Portugal Gouvêa De Sylos</option>
+                <option value="Stella Couvert">E.E. Professora Stella Couvert Ribeiro</option>
+                <option value="Etec">Etec Professor Rodolpho José Del Guerra</option>
             </select>
         </div>
 
