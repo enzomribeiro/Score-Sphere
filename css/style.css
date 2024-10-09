@@ -43,10 +43,6 @@ nav ul li a:hover {
     background-color: #E96346;
 }
 
-h1 {
-    font-size: 85px;
-}
-
 #counter {
     font-family: 'G7Segment', sans-serif;
     font-size: 80px;
@@ -64,6 +60,7 @@ h1 {
 }
 
 #jogadorSelecionado{
+    font-size: 85px;
     background-color: white;
     padding: 5px;
     margin-left: 20px;
