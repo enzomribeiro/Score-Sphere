@@ -1,9 +1,9 @@
+@font-face {
+    font-family: 'G7Segment';
+    src: url('fonts/g7_segment.ttf') format('truetype');
+}
+
 body {
-    display: flex; /* Ativa o Flexbox */
-    flex-direction: column; /* Organiza os itens em coluna */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    height: 100vh; /* Ocupa toda a altura da tela */
     margin: 0; /* Remove a margem padrão */
     font-family: Arial, sans-serif;
     text-align: center;
@@ -11,27 +11,62 @@ body {
     background-size: cover; /* Para cobrir toda a tela */
 }
 
+header {
+    background-color: #E96346;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #E96346;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #E96346;
+}
+
 h1 {
     font-size: 85px;
 }
 
 #counter {
+    font-family: 'G7Segment', sans-serif;
     font-size: 80px;
-    margin: 20px;
-    color: black
+    width: 155px;
+    height: 126px;
+    margin: 136px auto;
+    color: green;
+    background-color: black;
+    padding: 10px;
+    border: 2px solid green; /* Borda com a mesma cor da fonte */
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-button {
-    padding: 8px 16px;
-    font-size: 12.5px;
-    margin-top: 20px;
-    border-radius: 15px;
+#jogadorSelecionado{
+    background-color: white;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
-a {
-    color: #800000;
-}
-
-#jogadores{
-    margin: 20px;
-}
