@@ -1,5 +1,3 @@
---retirei o comando SELECT pois estava interferindo na hora da importação para o phpmyadmin, não houve nenhum outro problema
-
 CREATE DATABASE IF NOT EXISTS `jogadores_db` DEFAULT CHARACTER SET = 'utf8mb4' COLLATE = 'utf8mb4_general_ci';
 USE `jogadores_db`;
 
