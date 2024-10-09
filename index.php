@@ -26,25 +26,29 @@ if ($result->num_rows > 0) {
 
 </head>
 <body>
-
+<header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="cadastro.php">Jogadores</a></li>
+                <li><a href="consultarJogadores.php">Consultar Jogadores</a></li>
+                <li><a href="filtrar.php">Buscar</a></li>
+                <li><a id="connectButton">Conectar ao Arduino</a></li>
+                <li><label for="jogadores">Escolha um jogador:</label></li>
+                <li><select id="jogadores">
+                    <option value="">Selecione um jogador</option>
+                        <?php foreach ($jogadores as $jogador): ?>
+                    <option value="<?php echo htmlspecialchars($jogador['nome']); ?>"><?php echo htmlspecialchars($jogador['nome']); ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
     
 
     <h1 id="jogadorSelecionado">Selecione um Jogador</h1>
-    
-    <label for="jogadores">Escolha um jogador:</label>
-    <select id="jogadores">
-        <option value="">Selecione um jogador</option>
-        <?php foreach ($jogadores as $jogador): ?>
-            <option value="<?php echo htmlspecialchars($jogador['nome']); ?>"><?php echo htmlspecialchars($jogador['nome']); ?></option>
-        <?php endforeach; ?>
-    </select>
-
-    
     <div id="counter">0</div>
-    <button id="connectButton">Conectar ao Arduino</button>
-
-    <h2><a href="cadastro.php">Jogadores</a></h2>
-    <h2><a href="filtrar.php">Pontuação</a></h2>
     <script src="script/script.js"></script>
 
 </body>
