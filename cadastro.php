@@ -31,6 +31,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </head>
 <body>
+<header>
+        <nav>
+            <ul>
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="cadastro.php">Jogadores</a></li>
+                <li><a href="consultarJogadores.php">Consultar Jogadores</a></li>
+                <li><a href="filtrar.php">Buscar</a></li>
+                <li><a id="connectButton">Conectar ao Arduino</a></li>
+</header>
+    <div class="container">
     <h1>Cadastro de Jogador</h1>
     <form id="formCadastro" method="POST" action="cadastro.php">
         <div class="form-control">
@@ -60,25 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <button type="submit">Cadastrar</button>
     </form>
-
-    <h2>Jogadores Cadastrados:</h2>
-    <ul id="listaJogadores">
-        <?php
-        // Recupera todos os jogadores cadastrados
-        $sql = "SELECT * FROM jogadores";
-        $result = $conn->query($sql);
-
-        if ($result->num_rows > 0) {
-            // Saída dos dados de cada linha
-            while ($row = $result->fetch_assoc()) {
-                echo "<li>" . $row['nome'] . " - " . ($row['sexo'] == 'M' ? 'Masculino' : 'Feminino') . " - " . $row['escola'] . "</li>";
-            }
-        } else {
-            echo "<li>Nenhum jogador cadastrado</li>";
-        }
-        ?>
-    </ul>
-
-    <h2><a href="index.php">Inicial</a></h2>
+    </div>
 </body>
 </html>
