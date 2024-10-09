@@ -1,32 +1,65 @@
 body {
-    display: flex; /* Ativa o Flexbox */
-    flex-direction: column; /* Organiza os itens em coluna */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: center; /* Centraliza verticalmente */
-    height: 100vh; /* Ocupa toda a altura da tela */
-    margin: 0; /* Remove a margem padrão */
+    flex-direction: column; 
+    align-items: center;
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: orange;
-    background-size: cover; /* Para cobrir toda a tela */
+    background-color: rgb(226, 172, 74);
+    margin: 0;
 }
+
+header {
+    background-color: #E96346;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: #E96346;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+nav ul li a:hover {
+    background-color: #E96346;
+}
+
+h1 {
+    font-size: 85px;
+}
+
 
 h1 {
     font-size: 40px;
 }
 
-#counter {
-    font-size: 80px;
-    color: black
-}
-
 button {
-    padding: 8px 16px;
-    font-size: 25px;
+    padding: 4px 8px;
+    font-size: 15px;
     margin-top: 20px;
     border-radius: 15px;
 }
 
-a {
-    color: #800000;
+.container{
+    margin: 100px;
+    margin-left: 500px;
+    margin-right: 500px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
 }
