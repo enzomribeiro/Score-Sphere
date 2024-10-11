@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav>
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="cadastro.php">Jogadores</a></li>
-                <li><a href="consultarJogadores.php">Consultar Jogadores</a></li>
-                <li><a href="filtrar.php">Buscar</a></li>
+                <li><a href="cadastro.php">Cadastrar Jogadores</a></li>
+                <li><a href="consultarJogadores.php">Jogadores</a></li>
+                <li><a href="filtrar.php">Pontuação Geral</a></li>
                 <li><a id="connectButton">Conectar ao Arduino</a></li>
 </header>
 
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($result->num_rows > 0) {
             // Saída dos dados de cada linha
             while ($row = $result->fetch_assoc()) {
-                echo "<li>" . $row['nome'] . " - " . ($row['sexo'] == 'M' ? 'Masculino' : 'Feminino') . " - " . $row['escola'] . "</li>";
+                echo "<li>" . $row['nome'] . " - " . ($row['sexo'] == 'M' ? 'Masculino' : ($row['sexo'] == 'F' ? 'Feminino' : 'Não Informado')) . " - " . $row['escola'] . "</li>";
             }
         } else {
             echo "<li>Nenhum jogador cadastrado</li>";

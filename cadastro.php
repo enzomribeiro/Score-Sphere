@@ -35,9 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <nav>
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="cadastro.php">Jogadores</a></li>
-                <li><a href="consultarJogadores.php">Consultar Jogadores</a></li>
-                <li><a href="filtrar.php">Buscar</a></li>
+                <li><a href="cadastro.php">Cadastrar Jogadores</a></li>
+                <li><a href="consultarJogadores.php">Jogadores</a></li>
+                <li><a href="filtrar.php">Pontuação Geral</a></li>
                 <li><a id="connectButton">Conectar ao Arduino</a></li>
 </header>
     <div class="container">
@@ -54,25 +54,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="masculino">Masculino</label>
             <input type="radio" id="feminino" name="sexo" value="F" required>
             <label for="feminino">Feminino</label>
+            <input type="radio" id="NaoInformar" name="sexo" value="*" required>
+            <label for="NaoInformar">Não Informar</label>
         </div>
 
         <div class="form-control">
             <label for="escola">Selecione a Escola:</label>
             <select id="escola" name="escola" required>
                 <option value="">Selecione</option>
-                <option value="Cândido">E.E. Doutor Cândido Rodrigues</option>
-                <option value="Unigrau">Colegio Unigrau</option>
-                <option value="João Gabriel">E.E. Doutor João Gabriel Ribeiro</option>
-                <option value="Santa Inês">Colégio Santa Inês</option>
-                <option value="Coc">Escola De Grau Em Grau Coc</option>
-                <option value="Euclides">E.E. Euclides da Cunha</option>
-                <option value="Lumen">Colegio Lumen</option>
-                <option value="Stella Maris">EMEB Professora Stella Maris Barbosa Catalano</option>
-                <option value="Fundação">Fundação Educacional </option>
-                <option value="Laudelina">E.E. Professora Laudelina de Oliveira Pourrat</option>
-                <option value="Sylvia Portugal">E.E. Professora Sylvia Portugal Gouvêa De Sylos</option>
-                <option value="Stella Couvert">E.E. Professora Stella Couvert Ribeiro</option>
-                <option value="Etec">Etec Professor Rodolpho José Del Guerra</option>
+                <option value="E.E. Doutor Cândido Rodrigues">E.E. Doutor Cândido Rodrigues</option>
+                <option value="Colégio Unigrau">Colégio Unigrau</option>
+                <option value="E.E. Doutor João Gabriel Ribeiro">E.E. Doutor João Gabriel Ribeiro</option>
+                <option value="Colégio Santa Inês">Colégio Santa Inês</option>
+                <option value="Escola De Grau Em Grau Coc">Escola De Grau Em Grau Coc</option>
+                <option value="E.E. Euclides da Cunha">E.E. Euclides da Cunha</option>
+                <option value="Colégio Lumen">Colégio Lumen</option>
+                <option value="EMEB Professora Stella Maris Barbosa Catalano">EMEB Professora Stella Maris Barbosa Catalano</option>
+                <option value="Fundação Educacional">Fundação Educacional</option>
+                <option value="E.E. Professora Laudelina de Oliveira Pourrat">E.E. Professora Laudelina de Oliveira Pourrat</option>
+                <option value="E.E. Professora Sylvia Portugal Gouvêa De Sylos">E.E. Professora Sylvia Portugal Gouvêa De Sylos</option>
+                <option value="E.E. Professora Stella Couvert Ribeiro">E.E. Professora Stella Couvert Ribeiro</option>
+                <option value="Etec Professor Rodolpho José Del Guerra">Etec Professor Rodolpho José Del Guerra</option>
+                <option value="Outro">Outro</option>
             </select>
         </div>
 

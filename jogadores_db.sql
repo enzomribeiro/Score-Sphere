@@ -11,7 +11,5 @@ CREATE TABLE IF NOT EXISTS `jogadores`(
 );
 
 INSERT INTO `jogadores` (`id`, `nome`, `sexo`, `escola`, `pontuacao`) VALUES 
-(NULL, "Victor Alex Moreira Gouveia", "M", "Etec José Del Guerra", 5),
-(NULL, "Enzo Fernando", "M", "Etec José Del Guerra", 4);
 
 COMMIT;

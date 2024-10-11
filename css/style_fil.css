@@ -1,7 +1,6 @@
 body {
     display: flex; /* Ativa o Flexbox */
     flex-direction: column; /* Organiza os itens em coluna */
-    
     height: 100vh; /* Ocupa toda a altura da tela */
     margin: 0; /* Remove a margem padrão */
     font-family: Arial, sans-serif;

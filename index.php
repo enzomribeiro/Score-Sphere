@@ -24,14 +24,13 @@ if ($result->num_rows > 0) {
     </style>
 </head>
 <body>
-    
 <header>
         <nav>
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="cadastro.php">Jogadores</a></li>
-                <li><a href="consultarJogadores.php">Consultar Jogadores</a></li>
-                <li><a href="filtrar.php">Buscar</a></li>
+                <li><a href="cadastro.php">Cadastrar Jogadores</a></li>
+                <li><a href="consultarJogadores.php">Jogadores</a></li>
+                <li><a href="filtrar.php">Pontuação Geral</a></li>
                 <li><a id="connectButton">Conectar ao Arduino</a></li>
                 <li><label for="jogadores">Escolha um jogador:</label></li>
                 <li><select id="jogadores">
