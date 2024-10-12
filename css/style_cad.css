@@ -3,12 +3,12 @@ body {
     align-items: center;
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: rgb(226, 172, 74);
+    background-color:#212121;
     margin: 0;
 }
 
 header {
-    background-color: #E96346;
+    background-color:  #FF6F00;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -36,8 +36,9 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #E96346;
+    color: #FFC107;  
 }
+
 
 h1 {
     font-size: 85px;
@@ -49,10 +50,14 @@ h1 {
 }
 
 button {
-    padding: 4px 8px;
-    font-size: 15px;
-    margin-top: 20px;
-    border-radius: 15px;
+    margin-top: 10px;
+    background-color: #FF6F00;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .container{
@@ -64,37 +69,3 @@ button {
     border-radius: 10px;
 }
 
-@media screen and (max-width: 768px) {
-    nav ul li {
-        margin: 10px 0; 
-    }
-
-    h1 {
-        font-size: 28px; 
-    }
-
-    button {
-        font-size: 12px; 
-        padding: 6px 12px; 
-    }
-
-    .container {
-        margin-left: 20px; 
-        margin-right: 20px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    h1 {
-        font-size: 24px; 
-    }
-
-    button {
-        font-size: 10px; 
-        padding: 4px 8px; 
-    }
-
-    .container {
-        margin: 10px;
-        padding: 10px; 
-}}
