@@ -41,20 +41,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h1>Jogadores Cadastrados:</h1>
     <div class="lista">
-        <?php
-        // Recupera todos os jogadores cadastrados
-        $sql = "SELECT * FROM jogadores";
-        $result = $conn->query($sql);
+   <?php
+// Recupera todos os jogadores cadastrados
+$sql = "SELECT * FROM jogadores";
+$result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            // Saída dos dados de cada linha
-            while ($row = $result->fetch_assoc()) {
-                echo "<li>" . $row['nome'] . " - " . ($row['sexo'] == 'M' ? 'Masculino' : ($row['sexo'] == 'F' ? 'Feminino' : 'Não Informado')) . " - " . $row['escola'] . "</li>";
-            }
-        } else {
-            echo "<li>Nenhum jogador cadastrado</li>";
-        }
-        ?>
+if ($result->num_rows > 0) {
+    // Inicia a tabela
+    echo "<table border='1'>";
+    echo "<tr><th>Nome</th><th>Sexo</th><th>Escola</th></tr>"; // Cabeçalho da tabela
+
+    // Saída dos dados de cada linha
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row['nome'] . "</td>";
+        echo "<td>" . ($row['sexo'] == 'M' ? 'Masculino' : ($row['sexo'] == 'F' ? 'Feminino' : 'Não Informado')) . "</td>";
+        echo "<td>" . $row['escola'] . "</td>";
+        echo "</tr>";
+    }
+
+    // Fecha a tabela
+    echo "</table>";
+} else {
+    echo "Nenhum jogador cadastrado";
+}
+?>
+
     </div>
 </body>
 </html>
