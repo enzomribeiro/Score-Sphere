@@ -1,10 +1,8 @@
 <?php
-include('db.php');
+include('db.php'); 
 
 $filtro = isset($_POST['filtro']) ? $_POST['filtro'] : '';
 $pesquisa = isset($_POST['pesquisa']) ? $_POST['pesquisa'] : '';
-$pesquisaEscola = isset($_POST['pesquisaEscola']) ? $_POST['pesquisaEscola'] : '';
-
 
 $sql = "SELECT * FROM jogadores";
 
@@ -12,8 +10,8 @@ if ($filtro == 'nome') {
     $sql .= " WHERE nome LIKE '%$pesquisa%' ORDER BY nome";
 } else if ($filtro == 'sexo') {
     $sql .= " WHERE sexo LIKE '%$pesquisa%' ORDER BY sexo";
-} else if ($filtro == 'escola' && !empty($pesquisaEscola)) {
-    $sql .= " WHERE escola = '$pesquisaEscola' ORDER BY nome";
+} else if ($filtro == 'escola') {
+    $sql .= " WHERE escola = '$pesquisa' ORDER BY escola";
 }
 
 $result = $conn->query($sql);
@@ -21,6 +19,7 @@ $result = $conn->query($sql);
 if (!$result) {
     echo "Erro: " . $conn->error;
 }
+
 $escolasQuery = "SELECT DISTINCT escola FROM jogadores ORDER BY escola ASC";
 $escolasResult = $conn->query($escolasQuery);
 ?>
@@ -42,10 +41,35 @@ $escolasResult = $conn->query($escolasQuery);
             $('input[name="filtro"]').change(function() {
                 if ($(this).val() == 'escola') {
                     $('#pesquisa').hide(); // Esconde a barra de pesquisa
-                    $('#selectEscola').show(); // Mostra o select de escolas
+                    $('#selectEscola').show(); // Mostra o select
                 } else {
-                    $('#pesquisa').show(); // Mostra a barra de pesquisa para nome ou sexo
-                    $('#selectEscola').hide(); // Esconde o select de escolas
+                    $('#pesquisa').show(); // Mostra a barra de pesquisa
+                    $('#selectEscola').hide(); // Esconde o select
+                }
+            });
+
+            $('#pesquisa').keyup(function() {
+                var val = $.trim(this.value);
+
+                if (val !== "") {
+                    $.ajax({
+                        url: 'buscarJogadores.php', 
+                        method: 'GET',
+                        data: { query: val }, 
+                        success: function(data) {
+                            var jogadores = JSON.parse(data); 
+                            var output = ''; 
+
+                            jogadores.forEach(function(jogador) {
+                                output += '<div class="jogador">';
+                                output += '<p><strong>Nome:</strong> ' + jogador.nome + '<p><strong> Escola:</strong> ' + jogador.escola + '</p>' + '</p>';
+                                output += '</div>';
+                            });
+                            $('#resultadoBusca').html(output);
+                        }
+                    });
+                } else {
+                    $('#resultadoBusca').html('');
                 }
             });
         });
@@ -76,11 +100,12 @@ $escolasResult = $conn->query($escolasQuery);
         <input type="radio" id="escola" name="filtro" value="escola" required>
         <label for="escola">Escola</label>
 
-        
-        <select id="selectEscola" name="pesquisaEscola" style="display:none;"> 
+
+        <select id="selectEscola" name="pesquisa" style="display:none;"> 
             <option value="">Selecione uma escola</option>
             <?php
             if ($escolasResult->num_rows > 0) {
+     
                 while ($escola = $escolasResult->fetch_assoc()) {
                     echo "<option value='" . htmlspecialchars($escola['escola']) . "'>" . htmlspecialchars($escola['escola']) . "</option>";
                 }
@@ -95,7 +120,6 @@ $escolasResult = $conn->query($escolasQuery);
 </form>
 
 <?php
-
 if ($result->num_rows > 0) {
     echo "<table>";
     echo "<tr><th>Nome</th><th>Sexo</th><th>Escola</th><th>Pontuação</th></tr>";
