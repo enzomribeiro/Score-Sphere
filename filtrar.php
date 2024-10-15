@@ -3,6 +3,7 @@ include('db.php');
 
 $filtro = isset($_POST['filtro']) ? $_POST['filtro'] : '';
 $pesquisa = isset($_POST['pesquisa']) ? $_POST['pesquisa'] : '';
+$pesquisaEscola = isset($_POST['pesquisaEscola']) ? $_POST['pesquisaEscola'] : '';
 
 $sql = "SELECT * FROM jogadores";
 
@@ -11,7 +12,7 @@ if ($filtro == 'nome') {
 } else if ($filtro == 'sexo') {
     $sql .= " WHERE sexo LIKE '%$pesquisa%' ORDER BY sexo";
 } else if ($filtro == 'escola') {
-    $sql .= " WHERE escola = '$pesquisa' ORDER BY escola";
+    $sql .= " WHERE escola = '$pesquisaEscola' ORDER BY escola";
 }
 
 $result = $conn->query($sql);
@@ -31,7 +32,7 @@ $escolasResult = $conn->query($escolasQuery);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/iconeTrofeu" type="image/png">
     <title>Pontuação</title>
-
+  
     <style>
         <?php include 'css/style_fil.css'; ?>
     </style>
@@ -102,7 +103,7 @@ $escolasResult = $conn->query($escolasQuery);
         <label for="escola">Escola</label>
 
 
-        <select id="selectEscola" name="pesquisa" style="display:none;"> 
+        <select id="selectEscola" name="pesquisaEscola" style="display:none;"> 
             <option value="">Selecione uma escola</option>
             <?php
             if ($escolasResult->num_rows > 0) {
