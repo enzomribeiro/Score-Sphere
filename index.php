@@ -45,9 +45,12 @@ if ($result->num_rows > 0) {
         </nav>
     </header>
     
-
-    <h1 id="jogadorSelecionado">Selecione um Jogador</h1>
-    <div id="counter">0</div>
+   
+        <h1 id="jogadorSelecionado">Selecione um Jogador</h1>
+        <div class="tabela"></div>
+        <div class="aro"></div>
+        <div id="counter">0</div>
+    
 
     <script src="script/script.js"></script>
     <script src="script/index.js"></script>

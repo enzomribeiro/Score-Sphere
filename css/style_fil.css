@@ -36,9 +36,6 @@ nav ul li a {
     display: inline-block;
 }
 
-nav ul li a:hover {
-    color: #FFC107;  
-}
 
 h1 {
     font-size: 40px;
@@ -76,8 +73,8 @@ button {
 }
 
 table {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: auto;
+    margin-right: auto;
     border-collapse: collapse;
     margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  
