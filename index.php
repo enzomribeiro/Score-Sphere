@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/iconeBola" type="image/png">
+    <link rel="icon" href="img/logo.png" type="image/png">
     <title>Contador de Detecções</title>
     <style>
     <?php include 'css/style.css'; ?>
@@ -28,6 +28,9 @@ if ($result->num_rows > 0) {
 <header>
         <nav>
             <ul>
+                <div class="image-container">
+                    <img src="img/logo.png" alt="Descrição da imagem">
+                </div>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="cadastro.php">Cadastrar Jogadores</a></li>
                 <li><a href="consultarJogadores.php">Jogadores</a></li>
