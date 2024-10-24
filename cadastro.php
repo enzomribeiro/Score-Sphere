@@ -7,23 +7,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sexo = $_POST['sexo'];
     $escola = $_POST['escola'];
 
-    // Inserir o jogador no banco de dados
-    $sql = "INSERT INTO jogadores (nome, sexo, escola) VALUES ('$nome', '$sexo', '$escola')";
-    
-    if ($conn->query($sql) === TRUE) {
+    // Usando uma declaração preparada para evitar injeção de SQL
+    $stmt = $conn->prepare("INSERT INTO jogadores (nome, sexo, escola) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nome, $sexo, $escola);
+
+    if ($stmt->execute() === TRUE) {
         echo "<script>alert('Jogador cadastrado com sucesso!');</script>";
+        echo "<script>window.location.href = 'index.php'; </script>";  // Corrigido
     } else {
-        echo "<script>alert('Erro: " . $conn->error . "');</script>";
+        echo "<script>alert('Erro: " . $stmt->error . "');</script>";
     }
+
+    $stmt->close();  // Fecha a declaração
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/iconeBola" type="image/png">
+    <link rel="icon" href="img/iconeBola.ico" type="image/png">
     <title>Cadastro de Jogador</title>
 
     <style>
@@ -35,6 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <header>
         <nav>
             <ul>
+                <div class="image-container">
+                    <img src="img/logo.png" alt="Descrição da imagem">
+                </div>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="cadastro.php">Cadastrar Jogadores</a></li>
                 <li><a href="consultarJogadores.php">Jogadores</a></li>
@@ -51,11 +59,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="form-control">
             <label>Sexo:</label>
-            <input type="radio" id="masculino" name="sexo" value="M" required>
+            <input type="radio" id="masculino" name="sexo" value="Masculino" required>
             <label for="masculino">Masculino</label>
-            <input type="radio" id="feminino" name="sexo" value="F" required>
+            <input type="radio" id="feminino" name="sexo" value="Feminino" required>
             <label for="feminino">Feminino</label>
-            <input type="radio" id="NaoInformar" name="sexo" value="*" required>
+            <input type="radio" id="NaoInformar" name="sexo" value="Não Informardo" required>
             <label for="NaoInformar">Não Informar</label>
         </div>
 
