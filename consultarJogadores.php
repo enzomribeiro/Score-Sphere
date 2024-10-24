@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/iconeBola" type="image/png">
+    <link rel="icon" href="img/iconeBola.ico" type="image/png">
     <title>Consultar</title>
     <style>
     <?php include 'css/style_jg.css'; ?>
@@ -33,6 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <header>
         <nav>
             <ul>
+                <div class="image-container">
+                    <img src="img/logo.png" alt="Descrição da imagem">
+                </div>
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="cadastro.php">Cadastrar Jogadores</a></li>
                 <li><a href="consultarJogadores.php">Jogadores</a></li>
