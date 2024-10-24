@@ -1,21 +1,31 @@
 <?php
 include('db.php'); 
 
-$filtro = isset($_POST['filtro']) ? $_POST['filtro'] : '';
-$pesquisa = isset($_POST['pesquisa']) ? $_POST['pesquisa'] : '';
-$pesquisaEscola = isset($_POST['pesquisaEscola']) ? $_POST['pesquisaEscola'] : '';
+$filtro = $_POST['filtro'] ?? '';
+$pesquisa = $_POST['pesquisa'] ?? '';
+$pesquisaEscola = $_POST['pesquisaEscola'] ?? '';
+$pesquisaSexo = $_POST['pesquisaSexo'] ?? '';
 
 $sql = "SELECT * FROM jogadores";
+$params = [];
 
 if ($filtro == 'nome') {
-    $sql .= " WHERE nome LIKE '%$pesquisa%' ORDER BY nome";
-} else if ($filtro == 'sexo') {
-    $sql .= " WHERE sexo LIKE '%$pesquisa%' ORDER BY sexo";
-} else if ($filtro == 'escola') {
-    $sql .= " WHERE escola = '$pesquisaEscola' ORDER BY escola";
+    $sql .= " WHERE nome LIKE ? ORDER BY nome";
+    $params[] = "%$pesquisa%";
+} elseif ($filtro == 'sexo') {
+    $sql .= " WHERE sexo = ? ORDER BY sexo";
+    $params[] = $pesquisaSexo;
+} elseif ($filtro == 'escola') {
+    $sql .= " WHERE escola = ? ORDER BY escola";
+    $params[] = $pesquisaEscola;
 }
 
-$result = $conn->query($sql);
+$stmt = $conn->prepare($sql);
+if ($params) {
+    $stmt->bind_param(str_repeat('s', count($params)), ...$params);
+}
+$stmt->execute();
+$result = $stmt->get_result();
 
 if (!$result) {
     echo "Erro: " . $conn->error;
@@ -23,6 +33,8 @@ if (!$result) {
 
 $escolasQuery = "SELECT DISTINCT escola FROM jogadores ORDER BY escola ASC";
 $escolasResult = $conn->query($escolasQuery);
+$sexoQuery = "SELECT DISTINCT sexo FROM jogadores ORDER BY sexo ASC";
+$sexoResult = $conn->query($sexoQuery);
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +42,7 @@ $escolasResult = $conn->query($escolasQuery);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/iconeTrofeu" type="image/png">
+    <link rel="icon" href="img/iconeTrofeu.ico" type="image/png">
     <title>Pontuação</title>
   
     <style>
@@ -39,32 +51,30 @@ $escolasResult = $conn->query($escolasQuery);
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('input[name="filtro"]').change(function() {
-                if ($(this).val() == 'escola') {
-                    $('#pesquisa').hide(); // Esconde a barra de pesquisa
-                    $('#selectEscola').show(); // Mostra o select
-                } else {
-                    $('#pesquisa').show(); // Mostra a barra de pesquisa
-                    $('#selectEscola').hide(); // Esconde o select
-                }
-            });
+       $(document).ready(function() {
+    $('input[name="filtro"]').change(function() {
+        const filtroSelecionado = $(this).val();
+
+        // Alterna a visibilidade com base no filtro selecionado
+        $('#pesquisa').toggle(filtroSelecionado === 'nome'); // Mostra apenas para nome
+        $('#selectEscola').toggle(filtroSelecionado === 'escola'); // Mostra o select para escola
+        $('#selectSexo').toggle(filtroSelecionado === 'sexo'); // Mostra o select para sexo
+    });
 
             $('#pesquisa').keyup(function() {
-                var val = $.trim(this.value);
-
+                const val = $.trim(this.value);
                 if (val !== "") {
                     $.ajax({
                         url: 'buscarJogadores.php', 
                         method: 'GET',
                         data: { query: val }, 
                         success: function(data) {
-                            var jogadores = JSON.parse(data); 
-                            var output = ''; 
+                            const jogadores = JSON.parse(data); 
+                            let output = ''; 
 
                             jogadores.forEach(function(jogador) {
                                 output += '<div class="jogador">';
-                                output += '<p><strong>Nome:</strong> ' + jogador.nome + '<p><strong> Escola:</strong> ' + jogador.escola + '</p>' + '</p>';
+                                output += `<p><strong>Nome:</strong> ${jogador.nome}<br><strong>Escola:</strong> ${jogador.escola}</p>`;
                                 output += '</div>';
                             });
                             $('#resultadoBusca').html(output);
@@ -82,6 +92,9 @@ $escolasResult = $conn->query($escolasQuery);
 <header>
     <nav>
         <ul>
+            <div class="image-container">
+                <img src="img/logo.png" alt="Descrição da imagem">
+            </div>
             <li><a href="index.php">Inicio</a></li>
             <li><a href="cadastro.php">Cadastrar Jogadores</a></li>
             <li><a href="consultarJogadores.php">Jogadores</a></li>
@@ -102,12 +115,10 @@ $escolasResult = $conn->query($escolasQuery);
         <input type="radio" id="escola" name="filtro" value="escola" required>
         <label for="escola">Escola</label>
 
-
         <select id="selectEscola" name="pesquisaEscola" style="display:none;"> 
             <option value="">Selecione uma escola</option>
             <?php
             if ($escolasResult->num_rows > 0) {
-     
                 while ($escola = $escolasResult->fetch_assoc()) {
                     echo "<option value='" . htmlspecialchars($escola['escola']) . "'>" . htmlspecialchars($escola['escola']) . "</option>";
                 }
@@ -115,9 +126,19 @@ $escolasResult = $conn->query($escolasQuery);
             ?>
         </select>
 
+        <select id="selectSexo" name="pesquisaSexo" style="display:none;"> 
+            <option value="">Selecione um sexo</option>
+            <?php
+            if ($sexoResult->num_rows > 0) {
+                while ($sexo = $sexoResult->fetch_assoc()) {
+                    echo "<option value='" . htmlspecialchars($sexo['sexo']) . "'>" . htmlspecialchars($sexo['sexo']) . "</option>";
+                }
+            }
+            ?>
+        </select>
+
         <input type="text" id="pesquisa" name="pesquisa" placeholder="Pesquisar por..." value="<?php echo htmlspecialchars($pesquisa); ?>">
         <button type="submit">Filtrar</button>
-        <div id="resultadoBusca"></div>
     </div>
 </form>
 
@@ -139,7 +160,8 @@ if ($result->num_rows > 0) {
 } else {
     echo "Nenhum jogador encontrado.";
 }
-
+$stmt->close();
+$conn->close();
 ?>
 </body>
 </html>
