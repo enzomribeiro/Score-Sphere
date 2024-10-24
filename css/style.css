@@ -8,6 +8,131 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     background-color: white;
+    background-image: url('img/basquete.jpg');
+    background-size: cover;  /* Faz a imagem de fundo cobrir toda a tela proporcionalmente */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;  /* Mantém a imagem cobrindo toda a altura da tela */
+}
+
+header {
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    position: relative; /* Adicionando isso */
+}
+
+.image-container {
+    
+    position: absolute; /* Para posicionar no header */
+    top: 10px; 
+    right: 85%; /* Ajuste conforme necessário */
+}
+
+.image-container img {
+    max-width: 35%; /* Usando max-width */
+    max-height: 65%; /* Usando max-height */
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: black;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+
+
+.cesta {
+    position: relative; /* Permite que os filhos sejam posicionados em relação a ela */
+    width: 300px;  /* Largura da cesta */
+    height: 300px;  /* Altura da cesta */
+}
+
+/* Tabela do aro */
+.tabela {
+    position: absolute; /* Permite que a tabela se posicione dentro da cesta */
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;  /* Largura da tabela */
+    height: 175px;  /* Altura da tabela */
+    background-color: white;
+    border: 8px solid red;  /* Borda da tabela */
+    border-radius: 10px;
+    
+}
+
+/* Aro da cesta */
+.aro {
+    position: absolute; /* Permite que o aro se posicione dentro da cesta */
+    top: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;  /* Tamanho do aro */
+    height: 25px;
+    background-color: red;
+    border-radius: 10px;
+}
+
+
+/* Estilo do Título "Selecionar Jogador" */
+#jogadorSelecionado {
+    font-size: 24px;
+    color: black;
+    position: absolute;
+    top: 50px;  /* Ajusta a posição do título para cima */
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;  /* Adiciona um pouco de padding */
+    border-radius: 5px;  /* Bordas arredondadas */
+}
+
+/* Estilo do placar */
+#counter {
+    font-family: 'G7Segment', sans-serif;
+    font-size: 80px;  /* Tamanho do placar */
+    width: 160px;
+    height: 100px;
+    color: green;
+    background-color: black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;  /* Posição ajustada para o contador */
+    position: absolute; /* Permite que a tabela se posicione dentro da cesta */
+    top: 210px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+@font-face {
+    font-family: 'G7Segment';
+    src: url('fonts/g7_segment.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;
     background-image: url('basquete2.jpg');
     background-size: cover;  /* Faz a imagem de fundo cobrir toda a tela proporcionalmente */
     background-position: center center;
@@ -84,7 +209,119 @@ nav ul li a {
     font-size: 24px;
     color: black;
     position: absolute;
-    top: 50px;  /* Ajusta a posição do título para cima */
+    top: 20px;  /* Ajusta a posição do título para cima */
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;  /* Adiciona um pouco de padding */
+    border-radius: 5px;  /* Bordas arredondadas */
+}
+
+/* Estilo do placar */
+#counter {
+    font-family: 'G7Segment', sans-serif;
+    font-size: 80px;  /* Tamanho do placar */
+    width: 160px;
+    height: 100px;
+    color: green;
+    background-color: black;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;  /* Posição ajustada para o contador */
+    position: absolute; /* Permite que a tabela se posicione dentro da cesta */
+    top: 210px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+@font-face {
+    font-family: 'G7Segment';
+    src: url('fonts/g7_segment.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;
+    background-image: url('basquete2.jpg');
+    background-size: cover;  /* Faz a imagem de fundo cobrir toda a tela proporcionalmente */
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;  /* Mantém a imagem cobrindo toda a altura da tela */
+}
+
+header {
+    background-color:  black;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    background-color: black;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: inline-block;
+}
+
+
+
+.cesta {
+    position: relative; /* Permite que os filhos sejam posicionados em relação a ela */
+    width: 300px;  /* Largura da cesta */
+    height: 300px;  /* Altura da cesta */
+}
+
+/* Tabela do aro */
+.tabela {
+    position: absolute; /* Permite que a tabela se posicione dentro da cesta */
+    top: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;  /* Largura da tabela */
+    height: 175px;  /* Altura da tabela */
+    background-color: white;
+    border: 8px solid red;  /* Borda da tabela */
+    border-radius: 10px;
+    
+}
+
+/* Aro da cesta */
+.aro {
+    position: absolute; /* Permite que o aro se posicione dentro da cesta */
+    top: 500px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;  /* Tamanho do aro */
+    height: 25px;
+    background-color: red;
+    border-radius: 10px;
+}
+
+
+/* Estilo do Título "Selecionar Jogador" */
+#jogadorSelecionado {
+    font-size: 24px;
+    color: black;
+    position: absolute;
+    top: 20px;  /* Ajusta a posição do título para cima */
     width: 100%;
     text-align: center;
     padding: 5px 0;  /* Adiciona um pouco de padding */
