@@ -9,11 +9,26 @@ body {
 }
 
 header {
-    background-color:  #FF6F00;
+    background-color: #FF6F00;
     color: white;
     padding: 10px 0;
     text-align: center;
+    position: relative; /* Adicionando isso */
 }
+
+.image-container {
+    
+    position: absolute; /* Para posicionar no header */
+    top: 10px; 
+    right: 85%; /* Ajuste conforme necessário */
+}
+
+.image-container img {
+    max-width: 35%; /* Usando max-width */
+    max-height: 65%; /* Usando max-height */
+}
+
+
 
 
 nav ul {
@@ -46,7 +61,7 @@ h1 {
     color: black
 }
 
-#pesquisa, #selectEscola{
+#pesquisa, #selectEscola, #selectSexo{
     margin-top: 10px;
     margin-bottom: 12px;
     padding: 8px;
