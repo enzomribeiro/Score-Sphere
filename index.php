@@ -24,7 +24,14 @@ if ($result->num_rows > 0) {
     <?php include 'css/style.css'; ?>
     </style>
 </head>
-<body>
+<body style="
+    background-image: url('img/basquete.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+">
 <header>
         <nav>
             <ul>
